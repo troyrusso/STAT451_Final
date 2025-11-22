@@ -8,7 +8,7 @@ library(stringr)
 library(scales)
 
 # --- Load the CLEAN data ---
-# This reads the .Rds file you created with the prep script
+# This reads the .Rds and .Rdata files you created with the prep script
 plot_data <- readRDS("eurostat_clean.Rds")
 load("scatterplotDataSam.Rdata")
 load("lineplotDataSam.Rdata")
@@ -243,8 +243,6 @@ server <- function(input, output) {
   )
 
   output$scatter_sam <- renderPlot({
-    # https://www.reddit.com/r/rstats/comments/y8yib8/load_order_of_outputs_in_r_shiny/
-    # https://mastering-shiny.org/action-graphics.html#modifying-the-plot
     scatter_plot <- filtered_s_data_sam() %>%
       ggplot(mapping = aes(x = transport_cost,
                            y = percent_journeys_transport)) +
@@ -314,7 +312,7 @@ server <- function(input, output) {
         pull(city) %>%
         unique()
       palette <- hue_pal()(length(l_cities))
-      names(palette) <- l_cities # https://stackoverflow.com/questions/53194184
+      names(palette) <- l_cities
       palette
     }
   })
@@ -324,7 +322,7 @@ server <- function(input, output) {
       filter(year == max(input$year_line_sam)) %>%
       arrange(desc(percent_journeys_transport)) %>%
       pull(city) %>%
-      unname() # https://stackoverflow.com/questions/53194184
+      unname()
 
     filtered_l_data_sam() %>%
       ggplot(mapping = aes(x = year, y = percent_journeys_transport,
@@ -341,7 +339,6 @@ server <- function(input, output) {
       theme_bw() +
       scale_color_manual(values = colors_sam(), breaks = sorted_cities) +
       scale_x_continuous(breaks = min(input$year_line_sam):max(input$year_line_sam))
-      # https://ggplot2-book.org/scales-position.html#sec-position-continuous-breaks 
   })
 
   output$line_costs_sam <- renderPlot({
@@ -349,7 +346,7 @@ server <- function(input, output) {
       filter(year == max(input$year_line_sam)) %>%
       arrange(desc(transport_cost)) %>%
       pull(city) %>%
-      unname() # https://stackoverflow.com/questions/53194184
+      unname()
     filtered_l_data_sam() %>%
       ggplot(mapping = aes(x = year, y = transport_cost,
                            color = city)) +

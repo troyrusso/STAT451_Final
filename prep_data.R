@@ -56,7 +56,7 @@ plot_data <- merged_data %>%
     TT1060I = as.numeric(TT1060I)
   )
 
-# --- 7. FINAL STEP: Save the clean data ---
+# --- 7. Save the clean data ---
 # Your Shiny app will load this fast, clean file.
 saveRDS(plot_data, "eurostat_clean.Rds")
 
@@ -66,7 +66,7 @@ print("--- First part of data preparation complete! 'eurostat_clean.Rds' has bee
 
 # Data processing for Student 2
 
-file_path <- "estat_urb_ctran_filtered_en.csv"
+file_path <- "urb_ctran_public_transit.csv"
 
 clean_city_name_sam <- function(x) {
   if (str_detect(x, "(greater city)"))
@@ -159,3 +159,5 @@ get_data_sam <- function(x) {
 }
 
 get_data_sam()
+
+print("--- Second part of data preparation complete! ---")
