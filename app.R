@@ -61,7 +61,7 @@ ui <- navbarPage(
   # --- Sam Tab ---
   tabPanel(
     "Public Transportation Analysis",
-      titlePanel("Public transportation in European cities"),
+    titlePanel("Public transportation in European cities"),
     fluidRow(
       headerPanel("Public transit usage vs. fare costs"),
       column(
