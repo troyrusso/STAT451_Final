@@ -62,6 +62,9 @@ ui <- navbarPage(
   tabPanel(
     "Public Transportation Analysis",
     titlePanel("Public transportation in European cities"),
+    h5(paste0("This dashboard explores public transit usage, public transit user costs, ",
+              "their relationship, and how they evolve over time. How does transit ridership ",
+              "correlate with transit costs?")),
     fluidRow(
       headerPanel("Public transit usage vs. fare costs"),
       column(
