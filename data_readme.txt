@@ -24,11 +24,11 @@ HOW TO DOWNLOAD:
 7.  IMPORTANT: Rename the downloaded file to exactly:
     urb_ctran.xlsx
 
-8.  If the file `urb_ctran_public_transit.csv` isn't in the files, go to:
-    https://tinyurl.com/5bd4tn7v (which will automatically download that dataset).
+8.  Go to https://tinyurl.com/5bd4tn7v, which will automatically download the
+    dataset in a slightly different format (used by a different student).
     The link is shortened via tinyurl as the full link is very long.
 
-9.  Save this downloaded file to the same directory as the Shiny application
+9.  Save this downloaded file to the same directory as the Shiny application.
 
 10.  Ensure that the newly downloaded file has the name `urb_ctran_public_transit.csv`.
 
