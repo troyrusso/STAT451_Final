@@ -3,4 +3,7 @@
 .RData
 .Ruserdata
 eurostat_clean.Rds
+lineplotDataSam.Rdata
+scatterplotDataSam.Rdata
+urb_ctran_public_transit.csv
 urb_ctran.xlsx
