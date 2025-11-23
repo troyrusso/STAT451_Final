@@ -1,6 +1,9 @@
 STAT 451 Project - Data Download Instructions
 
 This application uses data from the Eurostat database.
+There are three different datasets you need to download.
+All three datasets should already be in the repository.
+If they are not, follow the instructions to download all three.
 
 DATASET:
   Transport - cities and greater cities [urb_ctran]
@@ -30,8 +33,24 @@ HOW TO DOWNLOAD:
 
 9.  Save this downloaded file to the same directory as the Shiny application.
 
-10.  Ensure that the newly downloaded file has the name `estat_urb_ctran_filtered.csv`.
+10. Ensure that the newly downloaded file has the name `estat_urb_ctran_filtered_en.csv`.
 
-11.  Run the `prep_data.R` script once to generate the clean 'eurostat_clean.Rds',
-     'scatterplotDataSam.Rdata', and 'lineplotDataSam.Rdata' files.
-     The Shiny app will run from these files.
+11. Go to the following website:
+    https://ec.europa.eu/eurostat/databrowser/view/urb_ctran/default/table?lang=en&category=urb.urb_cgc
+
+12. Click the download button.
+
+13. In the download window, Set File format → .xlsx
+
+14. Before downloading, change one default setting. 
+    Unselect the Option: “Add summary as a separate sheet”
+
+15. Download the file, and ensure it has the name "urb_ctran$defaultview_spreadsheet.xlsx".
+
+16. Move the file into the same directory as the Shiny application.
+
+17. Confirm that you have the files "urb_ctran.xlsx", "urb_ctran$defaultview_spreadsheet.xlsx",
+    and "estat_urb_ctran_filtered_en.csv" in the same directory as the Shiny application.
+
+18. Run the `prep_data.R` script once to generate one .Rds file and five .Rdata files.
+    The Shiny app will run from these files.
