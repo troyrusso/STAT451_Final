@@ -5,7 +5,7 @@ The dashboard provides two main visualizations:
  1. Trend of fatality rates over time by city size category
  2. Distribution of fatality values (boxplot) grouped by city size
 The app allows users to toggle linear trend lines and visually compare Large, Medium, Small, and National averages.
-_______________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________________________________
 Research Question
 Does city population size influence the rate of road-traffic fatalities? Is traffic in large metropolitan areas safer or more dangerous than smaller cities?
 
@@ -15,7 +15,7 @@ Specifically:
 3. How do these rates change over time?
 
 Our application provides interactive tools to visually investigate this question.
-_______________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________________________________
 Dataset
 
 We used the Eurostat Urban Audit dataset, specifically:
@@ -29,7 +29,7 @@ The raw spreadsheet was cleaned and restructured in global.R to create an analys
 2. Year
 3. Value (fatalities per 100k)
 4. Size (Large, Medium, Small, National)
-_______________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________________________________
 Dataset Download Process Guideline (Eurostat – Road Fatalities Dataset)
 
 Follow the steps below to correctly download the dataset from Eurostat so that it works with our Shiny application.
@@ -69,3 +69,19 @@ After modifying the settings:
 Inside your Shiny project folder
 (same folder as ui.R, server.R, global.R)
 2. And make sure the file path in global.R matches the actual filename.
+_________________________________________________________________________________________________________________________________________________
+Instructions for Running the Shiny Application
+
+These steps explain how to run the project locally in RStudio, assuming global.R, ui.R, server.R and the dataset are already in the same directory.
+
+Our Shiny app consists of three files:
+ • global.R
+ • ui.R
+ • server.R
+ • (plus the downloaded dataset .xlsx file)
+Place them all inside one folder on your computer.
+
+Open the project folder in RStudio: File → Open Project → choose the folder
+Run the app
+In the Console, type:
+shiny::runApp()
