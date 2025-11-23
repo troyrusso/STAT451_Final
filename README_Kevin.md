@@ -69,3 +69,4 @@ After modifying the settings:
 Inside your Shiny project folder
 (same folder as app.R)
 2. And make sure the file path in app.R matches the actual filename.
+3. Run the `app.R` script once to generate the clean 'urb_ctran$defaultview_spreadsheet.xlsx' file. The Shiny app will run from these files.
