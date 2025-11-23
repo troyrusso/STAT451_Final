@@ -103,14 +103,38 @@ ui <- navbarPage(
         plotOutput("line_costs_sam")
       )
     )
-  )
+  ),
+  
+  # --- David Tab ---
+  tabPanel("Bicycle Use/Infrastructure Analysis",
+           titlePanel("Bicycle Use Infrastructure Data"),
+           
+           sidebarLayout(
+             sidebarPanel(
+               checkboxInput("labels",
+                             "Labels on Lines?",
+                             value = FALSE)
+             ),
+             
+             mainPanel(
+               plotOutput("sharePlot_david"),
+               plotOutput("networkPlot_david")
+             )
+           )
+        )
+  
+  
+  
   # --- Add other team member tabs below as 'tabPanel(...)', ---
+  
 )
 
 #=========================================================
 # SERVER (The "Engine")
 #=========================================================
 server <- function(input, output) {
+  
+  ## TROY ##
   
   # --- 1. Create Reactive Data ---
   reactive_data <- reactive({
@@ -196,6 +220,8 @@ server <- function(input, output) {
     }
     
   })
+  
+  ## SAM ##
   
   output$year_selector_scatter_sam <- renderUI({
     years <- sort(unique(filter(s_data, country == input$country_scatter_sam)$year))
@@ -371,6 +397,46 @@ server <- function(input, output) {
       theme_bw() +
       scale_color_manual(values = colors_sam(), breaks = sorted_cities) +
       scale_x_continuous(breaks = min(input$year_line_sam):max(input$year_line_sam))
+  })
+  
+  ## DAVID ##
+  
+  output$sharePlot_david <- renderPlot({
+    plot1 = ggplot(data = bikes1, mapping = aes(x = Year, y = length_km,
+                                                colour = City)) +
+      geom_point() +
+      geom_line() +
+      ylim(0,2250) +
+      ggtitle("Bicycle Network Length Over Time") +
+      ylab("Network Length (km)") +
+      scale_color_discrete(breaks=c("Helsinki/Helsingfors",
+                                    "Tampere/Tammerfors",
+                                    "Tallinn", "Tartu"))
+    if(input$labels){
+      plot1 = plot1 + geom_text_repel(aes(label = City), 
+                                      data = (bikes1 %>% filter(Year == 2018)),
+                                      color = "black", size = 3)
+    }
+    print(plot1)
+  })
+  
+  output$networkPlot_david <- renderPlot({
+    plot2 = ggplot(data = bikes1, 
+                   mapping = aes(x = Year, y = share_pct, colour = City)) +
+      geom_point() +
+      geom_line() +
+      ylim(0,18) +
+      ggtitle("Share Of Journeys To Work By Bicycles Over Time") +
+      ylab("Share (%)") +
+      scale_color_discrete(breaks=c("Helsinki/Helsingfors",
+                                    "Tampere/Tammerfors",
+                                    "Tartu", "Tallinn"))
+    if(input$labels){ 
+      plot2 = plot2 + geom_text_repel(aes(label = City),
+                                      data = bikes1 %>% filter(Year == 2017),
+                                      color = "black", size = 3)
+    }
+    print(plot2)
   })
 }
 

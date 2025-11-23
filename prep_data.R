@@ -163,3 +163,42 @@ get_data_sam()
 
 print("--- Second part of data preparation complete! ---")
 
+# Data processing for Student 3
+
+library(readxl)
+library(ggrepel)
+library(tidyverse)
+
+bike_share = read_excel("urb_ctran.xlsx", sheet = "Sheet 4", skip = 7)
+bike_network = read_excel("urb_ctran.xlsx", sheet = "Sheet 11", skip = 7)
+
+bike_share = bike_share[, -c(3,5,7,9,11,13,15,17,19,21)]
+bike_share = bike_share %>% rename("City" = "TIME")
+bike_share = pivot_longer(data = bike_share, cols = -c(1), 
+                          names_to = "Year")
+bike_share = bike_share[-c(1:10),]
+bike_share = bike_share %>% rename("share_pct" = "value")
+
+bike_network = bike_network[, -c(3,5,7,9,11,13,15,17,19,21)]
+bike_network = bike_network %>% rename("City" = "TIME")
+bike_network = pivot_longer(data = bike_network, cols = -c(1), 
+                            names_to = "Year")
+bike_network = bike_network[-c(1:10),]
+bike_network = bike_network %>% rename("length_km" = "value")
+
+bikes = merge(bike_share, bike_network)
+bikes = bikes[-(which(bikes$share_pct %in% ":")),]
+bikes = bikes[-(which(bikes$length_km %in% ":")),]
+bikes = bikes[-(which(bikes$City %in% c(":", "b", "e",
+                                        "Observation flags:",
+                                        "Special value"))),]
+bikes = drop_na(bikes)
+
+bikes1 = bikes[which(bikes$City %in% c("Helsinki/Helsingfors", "Tallinn",
+                                       "Tampere/Tammerfors", "Tartu")), ]
+bikes1$share_pct = as.numeric(bikes1$share_pct)
+bikes1$Year = as.numeric(bikes1$Year)
+bikes1$length_km = as.numeric(bikes1$length_km)
+
+save(bikes1, file = "bikes1.rData")
+
