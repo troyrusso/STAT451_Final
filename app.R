@@ -389,7 +389,7 @@ library(shiny)
 library(bslib)
 
 # LOAD EXCEL FILE
-file_path <- "urb_ctran$defaultview_spreadsheet (1).xlsx"
+file_path <- "urb_ctran$defaultview_spreadsheet.xlsx"
 sheet_name <- "Sheet 1"
 raw <- read_excel(file_path, sheet = sheet_name, col_names = FALSE)
 
@@ -478,9 +478,7 @@ ui <- page_navbar(
   
   nav_panel("Distribution by City Size",
             sidebarLayout(
-              sidebarPanel(
-                checkboxInput("linear2", "Add trend line?", FALSE)
-              ),
+              sidebarPanel(),
               mainPanel(
                 plotOutput("plot2")
               )
@@ -542,10 +540,6 @@ server <- function(input, output) {
       ) +
       theme_minimal() +
       theme(plot.title = element_text(hjust = 0.5))
-    
-    if (input$linear2) {
-      thePlot <- thePlot + geom_smooth(method = "lm", se = FALSE)
-    }
     
     thePlot
   })
