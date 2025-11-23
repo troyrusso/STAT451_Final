@@ -11,7 +11,7 @@ library(shiny)
 library(bslib)
 
 # LOAD EXCEL FILE
-file_path <- "urb_ctran$defaultview_spreadsheet (1).xlsx"
+file_path <- "urb_ctran$defaultview_spreadsheet.xlsx"
 sheet_name <- "Sheet 1"
 raw <- read_excel(file_path, sheet = sheet_name, col_names = FALSE)
 
