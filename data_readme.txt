@@ -30,7 +30,7 @@ HOW TO DOWNLOAD:
 
 9.  Save this downloaded file to the same directory as the Shiny application.
 
-10.  Ensure that the newly downloaded file has the name `urb_ctran_public_transit.csv`.
+10.  Ensure that the newly downloaded file has the name `estat_urb_ctran_public_transit.csv`.
 
 11.  Run the `prep_data.R` script once to generate the clean 'eurostat_clean.Rds',
      'scatterplotDataSam.Rdata', and 'lineplotDataSam.Rdata' files.
