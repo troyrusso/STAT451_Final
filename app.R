@@ -156,25 +156,22 @@ ui <- navbarPage(
   # --- Kevin Tab ---
 
   
-  tabPanel("Road Accident Fatality Rate in Europe (2015-2024), Trend by City Size",
-            sidebarLayout(
-              sidebarPanel(
-                checkboxInput("linear1", "Add trend line?", FALSE)
-              ),
-              mainPanel(
-                plotOutput("plot1")
-              )
-            )
-  ),
-  
-  tabPanel("Road Accident Fatality Rate in Europe (2015-2024), Distribution by City Size",
-            sidebarLayout(
-              sidebarPanel(),
-              mainPanel(
-                plotOutput("plot2")
-              )
-            )
+  titlePanel("Road-accident fatalities by city size"),
+  sidebarLayout(
+    sidebarPanel(
+      checkboxInput("linear1",
+                    "Add linear trend line to time-series plot",
+                    value = FALSE)
+    ),
+    
+    mainPanel(
+      h3("Time series by city size"),
+      plotOutput("plot1", height = "350px"),
+      br(),
+      h3("Distribution by city size"),
+      plotOutput("plot2", height = "350px")
     )
+  )
   
   
   # --- Add other team member tabs below as 'tabPanel(...)', ---
