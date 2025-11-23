@@ -29,3 +29,43 @@ The raw spreadsheet was cleaned and restructured in global.R to create an analys
 2. Year
 3. Value (fatalities per 100k)
 4. Size (Large, Medium, Small, National)
+_______________________________________________________________________________________________________________________________________________________
+Dataset Download Process Guideline (Eurostat – Road Fatalities Dataset)
+
+Follow the steps below to correctly download the dataset from Eurostat so that it works with our Shiny application.
+
+1. Open the Dataset Page
+
+Go to the official Eurostat page for the dataset:
+
+Link:
+https://ec.europa.eu/eurostat/databrowser/view/urb_ctran/default/table?lang=en&category=urb.urb_cgc
+
+This dataset contains urban transport statistics, including road traffic fatalities for European cities.
+
+2. Locate the Download Button
+
+On the top-right section of the table interface, find the download icon (usually a downward arrow).
+
+3. Choose File Format
+
+Click the download button, and in the download window: Set File format → .xlsx
+
+4. Adjust Download Options
+
+Before downloading, change one default setting:
+
+Unselect the Option: “Add summary as a separate sheet”
+
+5. Download the File
+
+After modifying the settings:
+ • Click “Download”
+ • Your computer will download a file named similar to: urb_ctran$defaultview_spreadsheet.xlsx
+
+6. Save and Use the File
+
+1. Place the downloaded .xlsx file:
+Inside your Shiny project folder
+(same folder as ui.R, server.R, global.R)
+2. And make sure the file path in global.R matches the actual filename.
