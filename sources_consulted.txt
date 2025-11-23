@@ -1,0 +1,13 @@
+SAM
+
+https://mastering-shiny.org/action-layout.html#multi-row
+https://www.reddit.com/r/rstats/comments/y8yib8/load_order_of_outputs_in_r_shiny/
+https://mastering-shiny.org/action-graphics.html#modifying-the-plot
+https://stackoverflow.com/questions/53194184
+https://ggplot2-book.org/scales-position.html#sec-position-continuous-breaks
+
+DAVID
+
+https://www.hel.fi/hel2/ksv/julkaisut/kaavoituskatsaus/kaavoituskatsaus_2017_en_web.pdf
+https://kopio.hel.fi/en/urban-environment-and-traffic/cycling.html
+https://kopio.hel.fi/en/urban-environment-and-traffic/cycling/construction-of-cycle-paths.html

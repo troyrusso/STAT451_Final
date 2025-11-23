@@ -194,13 +194,17 @@ bikes = bikes[-(which(bikes$City %in% c(":", "b", "e",
                                         "Observation flags:",
                                         "Special value"))),]
 bikes = drop_na(bikes)
+bikes$share_pct = as.numeric(bikes$share_pct)
+bikes$Year = as.numeric(bikes$Year)
+bikes$length_km = as.numeric(bikes$length_km)
+
+# Correcting data entry errors
+bikes[33,4] = 1210.00
+bikes[34,4] = 1210.00
 
 bikes1 = bikes[which(bikes$City %in% c("Helsinki/Helsingfors", "Tallinn",
                                        "Tampere/Tammerfors", "Tartu")), ]
-bikes1$share_pct = as.numeric(bikes1$share_pct)
-bikes1$Year = as.numeric(bikes1$Year)
-bikes1$length_km = as.numeric(bikes1$length_km)
-
+save(bikes, file = "bikes.rData")
 save(bikes1, file = "bikes1.rData")
 
 print("--- Third part of data preparation complete! ---")

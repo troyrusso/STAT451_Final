@@ -113,14 +113,20 @@ ui <- navbarPage(
            
            sidebarLayout(
              sidebarPanel(
-               checkboxInput("labels",
-                             "Labels on Lines?",
+               checkboxInput("match",
+                             "Scatterplot: Filter to Match?",
                              value = FALSE)
              ),
              
              mainPanel(
-               plotOutput("sharePlot_david"),
-               plotOutput("networkPlot_david")
+               plotOutput("scatterPlot_david"),
+               fluidRow(
+                 splitLayout(cellWidths = c("40%", "60%"),
+                             plotOutput("sharePlot_david"),
+                             plotOutput("networkPlot_david"))
+               )
+               #plotOutput("sharePlot_david"),
+               #plotOutput("networkPlot_david")
              )
            )
         ),
@@ -426,42 +432,52 @@ server <- function(input, output) {
   
   ## DAVID ##
   
+  output$scatterPlot_david = renderPlot({
+    plot1 = ggplot(data = bikes, mapping = aes(x = length_km, y = share_pct))
+    
+    if(input$match){
+      plot1 = ggplot(data = bikes1, mapping = aes(x = length_km, y = share_pct,
+                                                  colour = City))
+    }
+    plot1 = plot1 + geom_point() + 
+      xlab("Network Length (km)") + ylab("Share (%)") +
+      ggtitle("Bicycle Network Length vs. Share of Work Journeys") +
+      xlim(0,1800) + ylim(0,40) +
+      coord_fixed(ratio = 1800/40) +
+      theme(legend.position = c(.8, .8))
+    
+    print(plot1)
+  })
+  
   output$sharePlot_david <- renderPlot({
-    plot1 = ggplot(data = bikes1, mapping = aes(x = Year, y = length_km,
+    plot2 = ggplot(data = bikes1, mapping = aes(x = Year, y = length_km,
                                                 colour = City)) +
       geom_point() +
       geom_line() +
-      ylim(0,2250) +
+      ylim(0,1250) +
+      coord_fixed(4/1250) +
       ggtitle("Bicycle Network Length Over Time") +
       ylab("Network Length (km)") +
       scale_color_discrete(breaks=c("Helsinki/Helsingfors",
                                     "Tampere/Tammerfors",
-                                    "Tallinn", "Tartu"))
-    if(input$labels){
-      plot1 = plot1 + geom_text_repel(aes(label = City), 
-                                      data = (bikes1 %>% filter(Year == 2018)),
-                                      color = "black", size = 3)
-    }
-    print(plot1)
+                                    "Tallinn", "Tartu")) +
+      theme(legend.position = "none")
+    print(plot2)
   })
   
   output$networkPlot_david <- renderPlot({
-    plot2 = ggplot(data = bikes1, 
+    plot3 = ggplot(data = bikes1, 
                    mapping = aes(x = Year, y = share_pct, colour = City)) +
       geom_point() +
       geom_line() +
       ylim(0,18) +
+      coord_fixed(4/18) +
       ggtitle("Share Of Journeys To Work By Bicycles Over Time") +
       ylab("Share (%)") +
       scale_color_discrete(breaks=c("Helsinki/Helsingfors",
                                     "Tampere/Tammerfors",
                                     "Tartu", "Tallinn"))
-    if(input$labels){ 
-      plot2 = plot2 + geom_text_repel(aes(label = City),
-                                      data = bikes1 %>% filter(Year == 2017),
-                                      color = "black", size = 3)
-    }
-    print(plot2)
+    print(plot3)
   })
 
   ## KEVIN ##
