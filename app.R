@@ -42,10 +42,32 @@ ui <- navbarPage(
                            "Select Year Range:",
                            min = 2015,
                            max = 2024,
-                           value = c(2015, 2024), # Default to the full range
+                           value = c(2015, 2024), 
                            step = 1,
-                           sep = "") # Removes the comma
+                           sep = ""), 
+               br(),
+               h4(strong("Regression Statistics")),
+               helpText("Statistics update based on the selected year range."),
+               
+  
+               uiOutput("troy_stats"),
+               br(),
+               p(style="font-size: 0.9em; font-style: italic;",
+                 "Conclusion: While many factors influence safety, car dependency is a highly significant predictor (p < 0.001), explaining over 10% of the variance in road deaths."),
+               
+               hr(), # Adds a horizontal line to separate inputs from results
+               
+               h4(strong("Key Conclusions")), # Bold Header
+               
+               p("Based on the analysis of European cities:"),
+               
+               tags$ul(
+                 tags$li(strong("Positive Correlation:"), " The scatter plot reveals that as car dependency increases, road fatalities per 10,000 residents also tend to increase."),
+                 br(),
+                 tags$li(strong("Statistically Significant:"), " The bar chart shows that the top 25% of cities for car usage (Q4) have a significantly higher average death rate than the lowest group, as indicated by the non-overlapping confidence intervals.")
+               )
              ),
+             
              
              # --- Main Panel for Outputs ---
              mainPanel(
@@ -237,7 +259,7 @@ server <- function(input, output) {
           title = "Average Road Fatalities Rise with Car Commuting Rates",
           
           # --- UPDATE: Subtitle now defines the groups ---
-          subtitle = "Groups defined by car usage (Q1 = Cities with lowest % car commuters; Q4 = Highest).\nError bars show 95% confidence interval of the mean fatality rate.",
+          subtitle = "Groups defined by car usage \n(Q1 = Cities with lowest % car commuters; Q4 = Highest).\nError bars show 95% confidence interval of the mean fatality rate.",
           
           x = "Car Commuting Group (Quartile)",
           y = "Average Road Fatalities per 10,000 People"
@@ -249,6 +271,40 @@ server <- function(input, output) {
                   size = 4)
     }
     
+  })
+  output$troy_stats <- renderUI({
+    
+    df <- reactive_data()
+    
+    # We need at least 2 points to do stats
+    if(nrow(df) > 2) {
+      
+      # Fit a linear model: Deaths ~ Car_Usage
+      model <- lm(TT1060I ~ TT1003V, data = df)
+      
+      # Extract key statistics
+      r_sq <- summary(model)$r.squared
+      correlation <- cor(df$TT1003V, df$TT1060I, use = "complete.obs")
+      
+      # Extract the P-value (significance of the trend)
+      p_val <- summary(model)$coefficients[2, 4]
+      p_text <- ifelse(p_val < 0.001, "< 0.001 (Highly Significant)", round(p_val, 3))
+      
+      # Create the HTML output
+      tagList(
+        tags$ul(
+          tags$li(strong("R-Squared: "), round(r_sq, 3), 
+                  tags$br(), span(style="font-size: 0.8em; color: gray;", "(Explains % of variance in deaths)")),
+          
+          tags$li(strong("Correlation (r): "), round(correlation, 3),
+                  tags$br(), span(style="font-size: 0.8em; color: gray;", "(Strength of relationship)")),
+          
+          tags$li(strong("P-Value: "), p_text)
+        )
+      )
+    } else {
+      p("Not enough data to calculate statistics.")
+    }
   })
   
   ## SAM ##
