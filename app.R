@@ -124,10 +124,13 @@ server <- function(input, output) {
     
     ggplot(reactive_data(), aes(x = TT1003V, y = TT1060I)) +
       geom_point(alpha = 0.6, color = "#2c7fb8") +
-      geom_smooth(method = "lm", col = "red", se = FALSE) +
+      
+      # --- UPDATE: se = TRUE adds the shaded confidence interval ---
+      geom_smooth(method = "lm", col = "red", se = TRUE) + 
+      
       labs(
         title = "Higher Car Commuting Correlates with More Road Fatalities",
-        subtitle = "Each point is a European city-year. Red line shows the least squares regression line.",
+        subtitle = "Each point is a European city-year. Red line shows regression with 95% confidence interval.",
         x = "Share of Commuters Using a Car (%)",
         y = "Road Fatalities per 10,000 People"
       ) +
@@ -178,13 +181,16 @@ server <- function(input, output) {
         expand_limits(y = max(summary_data$ci_high) * 1.15) +
         labs(
           title = "Average Road Fatalities Rise with Car Commuting Rates",
-          subtitle = "Cities grouped by car commuting quartile. Error bars show 95% confidence interval.",
+          
+          # --- UPDATE: Subtitle now defines the groups ---
+          subtitle = "Groups defined by car usage (Q1 = Cities with lowest % car commuters; Q4 = Highest).\nError bars show 95% confidence interval of the mean fatality rate.",
+          
           x = "Car Commuting Group (Quartile)",
           y = "Average Road Fatalities per 10,000 People"
         ) +
         theme_minimal(base_size = 14) +
         geom_text(aes(label = round(avg_deaths, 3)), 
-                  vjust = 4.5, 
+                  vjust = 1.5, 
                   color = "white", 
                   size = 4)
     }

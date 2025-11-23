@@ -66,7 +66,8 @@ print("--- First part of data preparation complete! 'eurostat_clean.Rds' has bee
 
 # Data processing for Student 2
 
-file_path <- "urb_ctran_public_transit.csv"
+#file_path <- "urb_ctran_public_transit.csv"
+file_path <- "estat_urb_ctran_filtered_en.csv"
 
 clean_city_name_sam <- function(x) {
   if (str_detect(x, "(greater city)"))
@@ -161,3 +162,4 @@ get_data_sam <- function(x) {
 get_data_sam()
 
 print("--- Second part of data preparation complete! ---")
+
