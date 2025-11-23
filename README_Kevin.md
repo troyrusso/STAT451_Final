@@ -67,21 +67,5 @@ After modifying the settings:
 
 1. Place the downloaded .xlsx file:
 Inside your Shiny project folder
-(same folder as ui.R, server.R, global.R)
-2. And make sure the file path in global.R matches the actual filename.
-_________________________________________________________________________________________________________________________________________________
-Instructions for Running the Shiny Application
-
-These steps explain how to run the project locally in RStudio, assuming global.R, ui.R, server.R and the dataset are already in the same directory.
-
-Our Shiny app consists of three files:
- • global.R
- • ui.R
- • server.R
- • (plus the downloaded dataset .xlsx file)
-Place them all inside one folder on your computer.
-
-Open the project folder in RStudio: File → Open Project → choose the folder
-Run the app
-In the Console, type:
-shiny::runApp()
+(same folder as app.R)
+2. And make sure the file path in app.R matches the actual filename.
