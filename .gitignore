@@ -5,6 +5,7 @@
 eurostat_clean.Rds
 lineplotDataSam.Rdata
 scatterplotDataSam.Rdata
-bikes1.Rdata
+bikes.rData
+bikes1.rData
 viz1_data.Rdata
 df2.Rdata

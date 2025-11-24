@@ -1,4 +1,4 @@
-STAT 451 Project - Data Download Instructions
+STAT 451 Project - Instructions for downloading data and running the app
 
 This application uses data from the Eurostat database.
 There are three different datasets you need to download.
@@ -8,9 +8,9 @@ If they are not, follow the instructions to download all three.
 DATASET:
   Transport - cities and greater cities [urb_ctran]
 
-HOW TO DOWNLOAD:
+HOW TO DOWNLOAD THE DATA (if files are not already present):
 1.  Go to the dataset's website:
-    https://ec.europa.eu/eurostat/databrowser/view/urb_ctran/default/table?lang=en
+    [Dataset 1](https://ec.europa.eu/eurostat/databrowser/view/urb_ctran/default/table?lang=en)
 
 2.  In the top right corner, click on the pencil icon in the box with the text
     "Urban audit indicator:   People killed in road accidents per 10000 pop."
@@ -27,8 +27,9 @@ HOW TO DOWNLOAD:
 7.  IMPORTANT: Rename the downloaded file to exactly:
     urb_ctran.xlsx
 
-8.  Go to https://tinyurl.com/5bd4tn7v, which will automatically download the
-    dataset in a slightly different format (used by a different student).
+8.  Go to this website: [Dataset 2](https://tinyurl.com/5bd4tn7v).
+    This will automatically download the dataset in 
+    a slightly different format (used by a different student).
     The link is shortened via tinyurl as the full link is very long.
 
 9.  Save this downloaded file to the same directory as the Shiny application.
@@ -36,7 +37,7 @@ HOW TO DOWNLOAD:
 10. Ensure that the newly downloaded file has the name `estat_urb_ctran_filtered_en.csv`.
 
 11. Go to the following website:
-    https://ec.europa.eu/eurostat/databrowser/view/urb_ctran/default/table?lang=en&category=urb.urb_cgc
+    [Dataset 3](https://ec.europa.eu/eurostat/databrowser/view/urb_ctran/default/table?lang=en&category=urb.urb_cgc)
 
 12. Click the download button.
 
@@ -52,5 +53,9 @@ HOW TO DOWNLOAD:
 17. Confirm that you have the files "urb_ctran.xlsx", "urb_ctran$defaultview_spreadsheet.xlsx",
     and "estat_urb_ctran_filtered_en.csv" in the same directory as the Shiny application.
 
-18. Run the `prep_data.R` script once to generate one .Rds file and five .Rdata files.
+HOW TO RUN THE APP (after files are in the same directory):
+
+18. Run the `prep_data.R` script once to generate one .Rds file and six .Rdata files.
     The Shiny app will run from these files.
+
+19. Run `app.R` to run the Shiny dashboard.
