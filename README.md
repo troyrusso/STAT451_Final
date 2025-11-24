@@ -1,14 +1,14 @@
-STAT 451 Project - Instructions for downloading data and running the app
+# STAT 451 Project - Instructions for downloading data and running the app
 
 This application uses data from the Eurostat database.
 There are three different datasets you need to download.
 All three datasets should already be in the repository.
 If they are not, follow the instructions to download all three.
 
-DATASET:
+## DATASET:
   Transport - cities and greater cities [urb_ctran]
 
-HOW TO DOWNLOAD THE DATA (if files are not already present):
+## HOW TO DOWNLOAD THE DATA (if files are not already present):
 1.  Go to the dataset's website:
     [Dataset 1](https://ec.europa.eu/eurostat/databrowser/view/urb_ctran/default/table?lang=en)
 
@@ -25,7 +25,7 @@ HOW TO DOWNLOAD THE DATA (if files are not already present):
 6.  Save the downloaded file in the *same directory* as the Shiny application.
 
 7.  IMPORTANT: Rename the downloaded file to exactly:
-    urb_ctran.xlsx
+    `urb_ctran.xlsx`
 
 8.  Go to this website: [Dataset 2](https://tinyurl.com/5bd4tn7v).
     This will automatically download the dataset in 
@@ -46,14 +46,14 @@ HOW TO DOWNLOAD THE DATA (if files are not already present):
 14. Before downloading, change one default setting. 
     Unselect the Option: “Add summary as a separate sheet”
 
-15. Download the file, and ensure it has the name "urb_ctran$defaultview_spreadsheet.xlsx".
+15. Download the file, and ensure it has the name `urb_ctran$defaultview_spreadsheet.xlsx`.
 
 16. Move the file into the same directory as the Shiny application.
 
-17. Confirm that you have the files "urb_ctran.xlsx", "urb_ctran$defaultview_spreadsheet.xlsx",
-    and "estat_urb_ctran_filtered_en.csv" in the same directory as the Shiny application.
+17. Confirm that you have the files `urb_ctran.xlsx`, `urb_ctran$defaultview_spreadsheet.xlsx`,
+    and `estat_urb_ctran_filtered_en.csv` in the same directory as the Shiny application.
 
-HOW TO RUN THE APP (after files are in the same directory):
+## HOW TO RUN THE APP (after files are in the same directory):
 
 18. Run the `prep_data.R` script once to generate one .Rds file and six .Rdata files.
     The Shiny app will run from these files.
