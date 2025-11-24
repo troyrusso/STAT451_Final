@@ -155,7 +155,7 @@ ui <- navbarPage(
   
   # --- Kevin Tab ---
 
-  
+  tabPanel("Road Accident Trends",
   titlePanel("Road-accident fatalities by city size"),
   sidebarLayout(
     sidebarPanel(
@@ -173,7 +173,7 @@ ui <- navbarPage(
     )
   )
   
-  
+  )
   # --- Add other team member tabs below as 'tabPanel(...)', ---
   
 )
